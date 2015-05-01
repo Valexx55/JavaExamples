@@ -5,6 +5,8 @@ package val.examples.basic;
  * This class is a recursive version that lets you know which of parameters received is the longest
  * 
  * @author Val
+ * @version 1.0
+ * 
  *
  */
 public class LongestWordRec {
