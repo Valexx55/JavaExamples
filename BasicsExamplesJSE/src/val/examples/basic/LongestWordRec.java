@@ -27,7 +27,7 @@ public class LongestWordRec {
 	
 	public static void main(String[] args) {
 		String longest = null;
-		
+		//solo para probar
 		
 		try {
 			
