@@ -27,6 +27,10 @@ public class LongestWordRec {
 		
 	}
 	
+	/**
+	 * 
+	 * @param args Contains the set of parameters you have to decide on which is the largest
+	 */
 	public static void main(String[] args) {
 		String longest = null;
 		
