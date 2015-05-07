@@ -1,4 +1,4 @@
-package val.examples.basic;
+package val.examples.basic.recursion;
 
 
 /**
@@ -12,17 +12,17 @@ package val.examples.basic;
  */
 public class LongestWordRec {
 	
-	private static String longerParam (int position, String[] args, String longerString )
+	private static String longestParam (int position, String[] args, String longerString )
 	
 	{
 		
-		if (position<args.length)
+		if (position<args.length)//recursive case
 		{
 			if (args[position].length()>longerString.length())
 			{
-				longerString = longerParam(position+1, args, args[position]);
-			} else longerString = longerParam(position+1, args, longerString);
-		}
+				longerString = longestParam(position+1, args, args[position]);
+			} else longerString = longestParam(position+1, args, longerString);
+		} //doesn't exist base case
 		
 		return longerString;	
 		
@@ -37,7 +37,7 @@ public class LongestWordRec {
 		
 		try {
 			
-			longest = longerParam(1, args, args[0]);
+			longest = longestParam(1, args, args[0]);
 			System.out.println("The longest arugment recieved is " + longest);
 			
 		} catch (ArrayIndexOutOfBoundsException e) {
