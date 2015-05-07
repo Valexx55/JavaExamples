@@ -29,18 +29,18 @@ public class ListDirectoriesRecursively {
 	 */
 	private void showPath (String fname, String cadspace)
 	{
-		File fichero = null;
-		String [] listado = null;
+		File current_file = null;
+		String [] list = null;
 		
-		fichero = new File (fname); //guess fname exists 
-		System.out.println(cadspace+fichero.getName());//either a directory or a file, print it:  base case
+		current_file = new File (fname); //guess fname exists 
+		System.out.println(cadspace+current_file.getName());//either a directory or a file, print it:  base case
 	
-		if (fichero.isDirectory()) //if is a directory, (recursive case)
+		if (current_file.isDirectory()) //if is a directory, (recursive case)
 		{
-			listado = fichero.list(); //got the list
-			for (String cad : listado) //and for each one, call
+			list = current_file.list(); //got the list
+			for (String cad : list) //and for each one, call
 			{
-				showPath(fname+'\\'+cad, cadspace+" "); //concat the new file escaping backslash and add a blank prefix to increase the level
+				showPath(fname+'\\'+cad, cadspace+" "); //concat the new file escaping backslash and add a blank prefix to increase deapth level
 			}
 		}
 		
