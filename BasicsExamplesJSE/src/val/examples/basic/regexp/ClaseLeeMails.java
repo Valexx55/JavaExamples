@@ -17,7 +17,7 @@ public class ClaseLeeMails {
 		
 		//TODO este es el método más difícil...recibiré una línea y tendré que extraer de ella todos correos
 		//e irlos concatenando en un String de salida
-		//Pista---> Sabemos la longuitud de la linea, sabemos que un Email viene encerrado entre símbolos clave...
+		//Pista---> Sabemos la longuitud de la linea, sabemos que un Email viene encerrado entre símbolos especiales...
 		// Paciencia y a pensar como si lo estuvieras cogiendo con las manos...ve declarando todas las condiciones, variables y bucles que necesites!!!
 		//Poco a poco...El lápiz y papel, ayudan siempre un montón!
 			
@@ -39,8 +39,10 @@ public class ClaseLeeMails {
      * debería devolver un String que fuera susana@kelly.org/francesco@hp.es
      * 
      * Para simplificar el proceso, cada línea obtenida del fichero, la voy
-     * a procesar aparte, en el método procesarLinea; siguiendo así una máxima en programación:
-     * Si una cosa es muy larga o complicada....LA DIVIDO!
+     * a procesar aparte, en el método procesarLinea; que se va a encargar sólo 
+     * de procesar cada líena. De este modo, sigo una máxima en programación:
+     * Si una cosa es muy larga o complicada....LA DIVIDO! 
+     * "DIVIDE Y VENCERÁS"
 	 * 
 	 * @param br
 	 * @return

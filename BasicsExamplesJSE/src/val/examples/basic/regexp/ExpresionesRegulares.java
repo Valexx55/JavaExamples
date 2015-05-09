@@ -1,5 +1,8 @@
 package val.examples.basic.regexp;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * 
  * 
@@ -25,6 +28,7 @@ public class ExpresionesRegulares {
 	public static void main(String[] args) {
 		
 		String linea = "asfadfbjp349iu'***hola@madrid.org///0sdg99sdg";
+		String linea2 = "asfadfbjp349iu'***hola@madrid.org///0sdg99sdgasfadfbjp349iu'***cita@madrid.org///0sdg99sdg";
 		//Dada una línea como las del ejemplo
 		String expresion_regular_mails = "[\\S\\s]*[\\*\\*\\*]{1}[\\S]+@[\\S]+/{3}[\\S\\s]*";
 		//escribirmos una expresión regular que la define y su significado sería:
@@ -41,6 +45,10 @@ public class ExpresionesRegulares {
 			//seguido de cualquier caracter
 			//terminado con 3 barras
 		
+		String expresion_regular_mails3 = ".*[\\*\\*\\*]{1}[.*^@]";
+		String expresion_regular_mails4 = "/{3}.*";
+		
+		
 	
 		
 		if (linea.matches(expresion_regular_mails))//¿Se ajusta linea al patrón descrito por la expresion_regular_mails?
@@ -51,13 +59,20 @@ public class ExpresionesRegulares {
 		
 		String[] devolucion = linea.split(expresion_regular_mails2);//Troceame en subcadenas, la cadena linea, usando como separador la expresión regular dada
 		
-		if (devolucion != null)
+		/*if (devolucion != null)
 		{
 			for (int i = 0; i < devolucion.length; i++) {
 				System.out.println("" + i + " = " +devolucion[i]);
 				
 			}
-		}
+		}*/
+		
+		Pattern p = Pattern.compile(expresion_regular_mails);
+		Matcher m = p.matcher(linea);
+		System.out.println(m.find());
+		
+		linea.replaceAll(expresion_regular_mails2, " ");
+		System.out.println(linea);
 		/**
 		 * Al ejecutar el código, el operador split, nos devuelve las substrings de línea, eliminado la expresión regular
 		 * que describe la aparición de un mail.
@@ -67,7 +82,20 @@ public class ExpresionesRegulares {
 		 * 
 		 * Una vez conseguido, aplicar al ejemplo anterior
 		 */
+	
+		/*String[] devolucion3 = linea2.split(expresion_regular_mails3);//Troceame en subcadenas, la cadena linea, usando como separador la expresión regular dada
 		
+		if (devolucion3 != null)
+		{
+			for (int i = 0; i < devolucion3.length; i++) {
+				System.out.println("" + i + " = " +devolucion3[i]);
+				
+				
+			}
+		}*/
+		//String[] dev2 = devolucion3[1].split(expresion_regular_mails4);
+		
+		//System.out.println(dev2[0]);
 	}
 
 }
