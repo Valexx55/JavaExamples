@@ -20,6 +20,26 @@ public class ClaseLeeMails {
 		//Pista---> Sabemos la longuitud de la linea, sabemos que un Email viene encerrado entre símbolos especiales...
 		// Paciencia y a pensar como si lo estuvieras cogiendo con las manos...ve declarando todas las condiciones, variables y bucles que necesites!!!
 		//Poco a poco...El lápiz y papel, ayudan siempre un montón!
+		
+		int longuitud = linea_actual.length();
+		int posicion_actual = 0;
+		int empieza, acaba = 0;
+		String email = "";
+		
+		while (posicion_actual<longuitud)
+		{
+			empieza = linea_actual.indexOf(INICIO_MAIL, posicion_actual);
+			if (empieza != -1)
+			{
+				acaba = linea_actual.indexOf(FIN_MAIL, empieza+3);
+				email = linea_actual.substring(empieza+3, acaba+1);
+				mails_de_linea_actual = mails_de_linea_actual + email;
+				posicion_actual = acaba;
+			}
+			else {
+					posicion_actual=longuitud;
+				 }
+		}
 			
 		return mails_de_linea_actual;
 	}
@@ -40,7 +60,7 @@ public class ClaseLeeMails {
      * 
      * Para simplificar el proceso, cada línea obtenida del fichero, la voy
      * a procesar aparte, en el método procesarLinea; que se va a encargar sólo 
-     * de procesar cada líena. De este modo, sigo una máxima en programación:
+     * de procesar cada línea. De este modo, sigo una máxima en programación:
      * Si una cosa es muy larga o complicada....LA DIVIDO! 
      * "DIVIDE Y VENCERÁS"
 	 * 
@@ -76,7 +96,7 @@ public class ClaseLeeMails {
 	{
 		BufferedReader br = null;
 		
-		//TODO Abrir y preparar la lectura de un fichero de texto
+		br = new BufferedReader(new FileReader(nombre));
 		
 		return br;
 	}
@@ -85,25 +105,26 @@ public class ClaseLeeMails {
 	{
 		String [] array_mails = null;
 		
-		//Recibo un String que contiene TODOS los mails, separados por una / ej: mail1/mail2/
-		//Tengo que separarlos y devolver un array de Mails PISTA --> método split de la clase String
+		array_mails = lista_mails.split("/");
 		
 		return array_mails;
 	}
 	
 	private static void mostrarMails (String [] lista_mails)
 	{
-		//TODO Recorrer la lista de mails. Sólo para comprobar que ha ido bien
+		for (int i = 0; i < lista_mails.length; i++) {
+			System.out.println("Mail " + i + " = " + lista_mails[i]);
+		}
 	}
 	
 	private static void ordenarMails (String [] array_mails)
 	{
-		//TODO OPCIONAL Tengo que ordenar el array de Strings y devolverlo 
+		Arrays.sort(array_mails); 
 	}
 	
 	private static void cerrarFichero (BufferedReader br) throws IOException
 	{
-		//TODO Recibo un fichero y lo devuelvo cerrado
+		br.close();
 	}
 	
 
@@ -131,7 +152,7 @@ public class ClaseLeeMails {
 		lista_mails = obtenerEmails(br);
 		cerrarFichero (br);
 		array_mails =  hacerArrayDeMails(lista_mails);
-		//ordenarMails (array_mails); // Este método es opcional, aunque luego veremos que es muy fácil de hacer!
+		ordenarMails (array_mails); // Este método es opcional, aunque luego veremos que es muy fácil de hacer!
 		mostrarMails(array_mails);
 		
 	}
