@@ -1,7 +1,9 @@
 package val.examples.basic;
+
+
 import java.io.Serializable;
 
-public class Persona implements Serializable {
+public class Persona implements Serializable, Comparable{
 	
 	private int edad;
 	private String nombre;
@@ -38,6 +40,10 @@ public class Persona implements Serializable {
 	}
 	
 	
-
-	
+	@Override
+	public int compareTo(Object o) {
+		Persona p_aux = (Persona)o;
+		
+		return this.edad-p_aux.edad;
+	}	
 }
