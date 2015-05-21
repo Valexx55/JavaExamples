@@ -2,7 +2,9 @@ package val.examples.basic.collections;
 
 import val.examples.basic.Coche;
 import val.examples.basic.Persona;
+
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -53,6 +55,21 @@ public class OrdenoHashMap {
 			//en el indice (posicion), donde estuviera la persona, estara tambien la clave (en el otro array, pero en la misma posicion)
 		}
 		
+		
+		return col_dev;
+		
+	}
+	
+	public static Map<Coche, Persona> ordenaPorValor2 (HashMap<Coche, Persona> hm)
+	{
+		LinkedHashMap<Coche, Persona> col_dev = null;
+		Comparator<? super Coche> cp = new ComparadorPersonas(hm);
+		
+		TreeMap<Coche, Persona> tm = new TreeMap<Coche, Persona>(cp); //me creo un árbol
+		tm.putAll(hm);//él solito va a ordenar todos los valores
+		
+		col_dev = new LinkedHashMap<Coche, Persona>();//me creo un hashmap enlazado, que respeta el orden de inserción
+		col_dev.putAll(tm);//y vuelco allí la colección, ya ordenada previamente por TreeMap
 		
 		return col_dev;
 		

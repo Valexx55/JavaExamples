@@ -47,6 +47,12 @@ public static void main(String[] args) {
 		System.out.println(mapa_personas_coche_ordenado_por_valor);
 		
 		
+		LinkedHashMap<Coche, Persona> mapa_personas_coche_ordenado_por_valor2 = (LinkedHashMap<Coche, Persona>) OrdenoHashMap.ordenaPorValor2(mapa_personas_coche);
+		
+		System.out.println("Ahora lo tenemos ordenado por el orden natural de valor (edad de la persona) ;)");
+		System.out.println(mapa_personas_coche_ordenado_por_valor2);
+		
+		
 	}
 
 }
