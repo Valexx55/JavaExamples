@@ -1,5 +1,7 @@
 package val.examples.junit;
 import org.hamcrest.Description;
+import org.hamcrest.Factory;
+import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
 import val.examples.basic.Alumno;
@@ -11,12 +13,18 @@ public class EsAlumnoSobresaliente extends TypeSafeMatcher<Alumno>{
 	
 	TipoNota nota = null;
 	
+	//En este método, describo el resultado esperado de la comprobación
 	@Override
 	public void describeTo(Description descripcion) {
-		descripcion.appendText("Resultado esperado: alumno con " + TipoNota.SOBRESALIENTE+"\n");
-		descripcion.appendText("Obtenido alumno:" + this.nota);
-
+		descripcion.appendText("Alumno con " + TipoNota.SOBRESALIENTE);
 		
+	}
+	
+	//En este otro método, describo el resultado en caso de que la comprobación de falso
+	@Override
+	protected void describeMismatchSafely(Alumno item,
+			Description mismatchDescription) {
+		mismatchDescription.appendText( item.getNombre() +" obtuvo " + item.getNombre_nota() +" ");
 	}
 
 	@Override
@@ -37,6 +45,12 @@ public class EsAlumnoSobresaliente extends TypeSafeMatcher<Alumno>{
 		}
 		
 		return b_dev;
+	}
+	
+	//@Factory
+	public static Matcher<Alumno> alumnoSobresaliente ()
+	{
+		return new EsAlumnoSobresaliente();
 	}
 
 }
