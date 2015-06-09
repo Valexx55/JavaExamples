@@ -21,6 +21,8 @@ public class MainRunTimeException {
 	
 	
 	public static void main(String[] args) {
+		/*Ojo, llamo a un método que internamente lanza una excepción, pero el compilador
+		 * no me fuerza a definir un try - catch*/
 		ClaseTestException cl = new ClaseTestException(15);
 		cl.toString();
 		
