@@ -74,7 +74,7 @@ public class Conexion {
 	//de ejecutar una instrucción que NO es un SELECT ;)
 	public static void liberarRecursos (Connection conn, Statement stmt)
 	{
-		if (rset != null) 	{ try { rset.close(); } catch (Exception e2) { e2.printStackTrace(); }}
 		if (stmt != null)	{ try {	stmt.close(); } catch (Exception e2) { e2.printStackTrace(); }}
+		if (conn != null)	{ try {	conn.close(); } catch (Exception e2) { e2.printStackTrace(); }}
 	}
 }
