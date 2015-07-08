@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Subir Ficheros</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data" action="upload" >
+  <input type="file" name="fResumen" id="fResumen"/>
+  <input type="submit" value="Subir"/>
+  </form>
+</body>
+</html>
+
+<!-- No olvidéis mapear en el Web.xml esto
+
+<servlet>
+    <servlet-name>upload</servlet-name>
+    <servlet-class>curso.jee.UploadFileExample</servlet-class>
+    <init-param><param-name>RUTA_SUBIDA_FICHEROS</param-name><param-value>C:\logs</param-value></init-param>
+    <multipart-config>
+      <max-file-size>3145728</max-file-size>
+      <max-request-size>5242880</max-request-size>
+    </multipart-config>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>upload</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+
+ -->
