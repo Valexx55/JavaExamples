@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var xmlHttp = new XMLHttpRequest();
+
+function rellenaCaja()
+{
+	xmlHttp.onreadystatechange = procesarEventos;
+	xmlHttp.open('GET', 'CargarMenu?num=30', true); //indicamos como vamos a enviar los datos, en este caso con el metodo GET al archivo meses.php?num= el valor que le indiquemos en el textbox
+	xmlHttp.send(null);
+	
+}
+
+function procesarEventos()
+{
+   
+  if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
+  {
+      if(xmlHttp.status==200)// y el código de la cabecera http es bueno
+          {
+			alert("He recibido " + xmlHttp.responseText);
+			document.getElementById("cajatexto").value = xmlHttp.responseText;
+          }
+      else
+      {
+          alert("Ha ocurrido un error"+ xmlHttp.status +":"+ xmlHttp.statusText);
+      }
+  }
+
+}
+
+
+
+</script>
+</head>
+
+
+<body>
+
+<table>
+	<tr><td><input type="text" id="cajatexto" value="hola"></td></tr>
+	<tr><td><input type="submit" value="Rellena" onclick="rellenaCaja();"></td></tr>
+</table>
+ 
+
+</body>
+</html>
