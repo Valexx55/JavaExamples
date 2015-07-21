@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var xmlHttp = new XMLHttpRequest();
+
+
+function enviaDatos()
+{
+	var name = document.getElementById("nombre").value;
+	var age = document.getElementById("edad").value;
+	
+	var persona = {
+		    nombre:name,
+		    edad:age
+		};
+	
+	
+	alert ("Persona intro = " + persona.nombre);
+	alert ("Persona intro = " + persona.edad);
+	
+	
+	
+	xmlHttp.onreadystatechange = procesarEventos;
+	xmlHttp.open('POST', 'CargaJSON', true); //indicamos como vamos a enviar los datos, en este caso con el metodo GET al archivo meses.php?num= el valor que le indiquemos en el textbox
+	xmlHttp.setRequestHeader('Content-Type', 'application/json');
+	xmlHttp.send(JSON.stringify(persona));
+	
+	
+	
+}
+
+function procesarEventos()
+{
+   
+  if(xmlHttp.readyState==4) //ya hemos recibido respuesta del servidor
+  {
+      if(xmlHttp.status==200)// y el código de la cabecera http es bueno
+          {
+			alert("He recibido " + xmlHttp.responseText);
+			/*var objetoJson = JSON.parse(xmlHttp.responseText);
+			alert ("Persona = " + objetoJson.nombre);
+			alert ("Persona = " + objetoJson.edad);
+			document.getElementById("nombre").value = objetoJson.nombre;
+			document.getElementById("edad").value = objetoJson.edad;*/
+			
+          }
+      else
+      {
+          alert("Ha ocurrido un error"+ xmlHttp.status +":"+ xmlHttp.statusText);
+      }
+  }
+
+}
+
+
+
+</script>
+</head>
+
+
+<body>
+
+<table>
+	<tr><td><input type="text" id="nombre" ></td></tr>
+	<tr><td><input type="text" id="edad" ></td></tr>
+	<tr><td><input type="submit" value="Rellena" onclick="enviaDatos()"></td></tr>
+</table>
+ 
+
+</body>
+</html>
