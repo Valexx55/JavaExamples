@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/pool</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+		<property name="hibernate.jdbc.use_get_generated_keys">true</property>
+        <mapping resource="jsf/entidades/Locations.hbm.xml" />
+        <mapping resource="jsf/entidades/Countries.hbm.xml" />
+        <mapping resource="jsf/entidades/EmpDetailsView.hbm.xml" />
+        <mapping resource="jsf/entidades/Regions.hbm.xml" />
+        <mapping resource="jsf/entidades/Departments.hbm.xml" />
+        <mapping resource="jsf/entidades/Jobs.hbm.xml" />
+        <mapping resource="jsf/entidades/JobHistory.hbm.xml" />
+        <mapping resource="jsf/entidades/Employees.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

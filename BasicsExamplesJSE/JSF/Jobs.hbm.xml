@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jul-2015 18:56:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="jsf.entidades.Jobs" table="JOBS" optimistic-lock="version">
+        <id name="jobId" type="string">
+            <column name="JOB_ID" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="jobTitle" type="string">
+            <column name="JOB_TITLE" length="35" not-null="true" />
+        </property>
+        <property name="minSalary" type="int">
+            <column name="MIN_SALARY" precision="6" scale="0" />
+        </property>
+        <property name="maxSalary" type="int">
+            <column name="MAX_SALARY" precision="6" scale="0" />
+        </property>
+        <set name="employeeses" table="EMPLOYEES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="JOB_ID" length="10" not-null="true" />
+            </key>
+            <one-to-many class="jsf.entidades.Employees" />
+        </set>
+        <set name="jobHistories" table="JOB_HISTORY" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="JOB_ID" length="10" not-null="true" />
+            </key>
+            <one-to-many class="jsf.entidades.JobHistory" />
+        </set>
+    </class>
+</hibernate-mapping>

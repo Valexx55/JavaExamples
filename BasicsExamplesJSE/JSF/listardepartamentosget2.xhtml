@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+      
+ <f:metadata>
+    <f:viewParam name="dpto" value="#{departamentos.selected}"/>
+</f:metadata>
+ 
+<h:head>
+  <title>Una aplicación simple JavaServer Faces</title>
+</h:head>
+<h:body>
+
+  <h:form>
+  	<h:selectOneMenu label="Departamentos" value="#{departamentos.selected}" name="id">
+   			<f:selectItems value="#{departamentos.listaDepartamentos}" var="d"
+   			itemValue="#{d.departmentId}" 
+   			itemLabel="#{d.departmentName}" />
+   	</h:selectOneMenu>
+   	<h:commandButton value="Mostrar Empleados" action="empleados2?faces-redirect=true&amp;includeViewParams=true">
+   	</h:commandButton>
+  </h:form>
+</h:body>
+</html>

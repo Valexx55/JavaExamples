@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jul-2015 18:56:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="jsf.entidades.Countries" table="COUNTRIES" optimistic-lock="version">
+        <id name="countryId" type="string">
+            <column name="COUNTRY_ID" length="2" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="regions" class="jsf.entidades.Regions" fetch="select">
+            <column name="REGION_ID" precision="22" scale="0" />
+        </many-to-one>
+        <property name="countryName" type="string">
+            <column name="COUNTRY_NAME" length="40" />
+        </property>
+        <set name="locationses" table="LOCATIONS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COUNTRY_ID" length="2" />
+            </key>
+            <one-to-many class="jsf.entidades.Locations" />
+        </set>
+    </class>
+</hibernate-mapping>

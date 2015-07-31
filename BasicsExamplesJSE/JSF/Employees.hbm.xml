@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jul-2015 18:56:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="jsf.entidades.Employees" table="EMPLOYEES" optimistic-lock="version">
+        <id name="employeeId" type="int">
+            <column name="EMPLOYEE_ID" precision="6" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="departments" class="jsf.entidades.Departments" fetch="select">
+            <column name="DEPARTMENT_ID" precision="4" scale="0" />
+        </many-to-one>
+        <many-to-one name="jobs" class="jsf.entidades.Jobs" fetch="select">
+            <column name="JOB_ID" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="employees" class="jsf.entidades.Employees" fetch="select">
+            <column name="MANAGER_ID" precision="6" scale="0" />
+        </many-to-one>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="20" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="25" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="25" not-null="true" unique="true" />
+        </property>
+        <property name="phoneNumber" type="string">
+            <column name="PHONE_NUMBER" length="20" />
+        </property>
+        <property name="hireDate" type="date">
+            <column name="HIRE_DATE" length="7" not-null="true" />
+        </property>
+        <property name="salary" type="int">
+            <column name="SALARY" precision="8" />
+        </property>
+        
+        <set name="employeeses" table="EMPLOYEES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MANAGER_ID" precision="6" scale="0" />
+            </key>
+            <one-to-many class="jsf.entidades.Employees" />
+        </set>
+        <set name="departmentses" table="DEPARTMENTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MANAGER_ID" precision="6" scale="0" />
+            </key>
+            <one-to-many class="jsf.entidades.Departments" />
+        </set>
+        <set name="jobHistories" table="JOB_HISTORY" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EMPLOYEE_ID" precision="6" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="jsf.entidades.JobHistory" />
+        </set>
+    </class>
+</hibernate-mapping>

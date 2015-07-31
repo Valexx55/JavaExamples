@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+<h:head>
+  <title>Una aplicación simple JavaServer Faces</title>
+   <f:metadata>
+    <f:viewParam value="#{empleadosDepartamento.id}" name="dpto"/>
+    <f:event type="preRenderView" listener="#{empleadosDepartamento.init}" />
+    
+</f:metadata>
+</h:head>
+<h:body>
+  <!--<h:outputText label="Dept Selected Flash" value="#{flash.id_dpto}"/>
+  <h:outputText label="Dept Selected RQ" value='#{requestScope["id"]}'/>-->
+  <h:dataTable value="#{empleadosDepartamento.listaEmpleados}" var="e" rendered="#{not empty empleadosDepartamento.listaEmpleados}"	>
+ 
+    			<h:column>
+    				<f:facet name="header">Nombre</f:facet>
+    				#{e.firstName}
+    			</h:column>
+    			<h:column>
+    				<f:facet name="header">E-mail</f:facet>
+    				#{e.email}
+    			</h:column>
+  </h:dataTable>
+  <h:outputText rendered="#{empty empleadosDepartamento.listaEmpleados}" value="NO HAY EMPLEADOS EN EL DEPARTAMENTO SELECCIONADO"></h:outputText>
+ 
+</h:body>
+</html>

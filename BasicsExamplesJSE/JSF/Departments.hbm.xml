@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jul-2015 18:56:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="jsf.entidades.Departments" table="DEPARTMENTS" optimistic-lock="version">
+        <id name="departmentId" type="int">
+            <column name="DEPARTMENT_ID" precision="4" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="locations" class="jsf.entidades.Locations" fetch="select">
+            <column name="LOCATION_ID" precision="4" scale="0" />
+        </many-to-one>
+        <many-to-one name="employees" class="jsf.entidades.Employees" fetch="select">
+            <column name="MANAGER_ID" precision="6" scale="0" />
+        </many-to-one>
+        <property name="departmentName" type="string">
+            <column name="DEPARTMENT_NAME" length="30" not-null="true" />
+        </property>
+        <set name="jobHistories" table="JOB_HISTORY" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DEPARTMENT_ID" precision="4" scale="0" />
+            </key>
+            <one-to-many class="jsf.entidades.JobHistory" />
+        </set>
+        <set name="employeeses" table="EMPLOYEES" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="DEPARTMENT_ID" precision="4" scale="0" />
+            </key>
+            <one-to-many class="jsf.entidades.Employees" />
+        </set>
+    </class>
+</hibernate-mapping>

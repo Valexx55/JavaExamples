@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10-jul-2015 18:56:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="jsf.entidades.Locations" table="LOCATIONS" optimistic-lock="version">
+        <id name="locationId" type="int">
+            <column name="LOCATION_ID" precision="4" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="countries" class="jsf.entidades.Countries" fetch="select">
+            <column name="COUNTRY_ID" length="2" />
+        </many-to-one>
+        <property name="streetAddress" type="string">
+            <column name="STREET_ADDRESS" length="40" />
+        </property>
+        <property name="postalCode" type="string">
+            <column name="POSTAL_CODE" length="12" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="30" not-null="true" />
+        </property>
+        <property name="stateProvince" type="string">
+            <column name="STATE_PROVINCE" length="25" />
+        </property>
+        <set name="departmentses" table="DEPARTMENTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="LOCATION_ID" precision="4" scale="0" />
+            </key>
+            <one-to-many class="jsf.entidades.Departments" />
+        </set>
+    </class>
+</hibernate-mapping>
