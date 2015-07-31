@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+  <title>Una aplicación simple JavaServer Faces</title>
+</h:head>
+  <ui:composition template="./plantilla.xhtml">
+  <ui:define name="titulo">
+ Aplicaciónn JSF que usa una plantilla
+  </ui:define>
+   <ui:define name="cuerpo">
+   <h:form>
+     <h2>Escriba a continuación sus datos y el mensaje a enviar</h2>
+     <h4>Formulario de envio</h4>
+     <table>
+       <tr>
+         <td>Remitente:</td>
+         <td>
+           <h:inputText label="Remitente"
+                        id="fremitente" value="#{beanMensaje.remitente}"
+                        required="true"/>
+           <h:message for="fremitente" />
+         </td>
+       </tr>
+       <tr>
+         <td>Sexo:</td>
+         <td>
+           <h:selectOneRadio label="Sex"
+                             id="sex" value="#{beanMensaje.sex}" required="true">
+             <f:selectItem itemLabel="Hombre" itemValue="male" />
+             <f:selectItem itemLabel="Mujer" itemValue="female" />
+           </h:selectOneRadio>
+           <h:message for="sex" />
+         </td>
+       </tr>
+       <tr>
+         <td>Fecha:</td>
+         <td>
+           <h:inputText label="Fecha"
+                        id="fecha" value="#{beanMensaje.fecha}" required="true">
+             <f:convertDateTime pattern="dd/MM/yyyy" />
+           </h:inputText> (dd/MM/yyyy)
+           <h:message for="fecha" />
+         </td>
+       </tr>
+       <tr>
+         <td>Correo electrónico:</td>
+         <td>
+           <h:inputText label="Correo electrónico"
+                        id="email" value="#{beanMensaje.email}" required="true"
+                        validator="#{beanMensaje.validaEmail}"/>
+           <h:message for="email" />
+         </td>
+       </tr>
+       <tr>
+         <td>Tipo Mensaje:</td>
+         <td>
+           <h:selectOneMenu label="Tipo" value="#{beanMensaje.tipoMensaje}">
+            <f:selectItem itemLabel="Felicitación" itemValue="felicitacion" />
+             <f:selectItem itemLabel="Solicitud" itemValue="solicitud" />
+             <f:selectItem itemLabel="Queja" itemValue="queja" />
+             <f:selectItem itemLabel="Pregunta" itemValue="pregunta" />
+           </h:selectOneMenu>
+         </td>
+       </tr>
+       <tr>
+         <td>Mensaje:</td>
+         <td>
+           <h:inputTextarea label="Mensaje"
+                        id="mensaje" value="#{beanMensaje.mensaje}"
+                        required="true"/>
+           <h:message for="mensaje" />
+         </td>
+       </tr>
+     </table>
+     <h:messages />
+     <p><h:commandButton value="Aceptar" action="confirmar" /></p>
+   </h:form>
+ </ui:define>
+</ui:composition>
+</html>
