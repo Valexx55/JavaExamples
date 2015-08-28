@@ -22,7 +22,14 @@
         <property name="show_sql">true</property>
 
         <!-- Mapping files -->
-        <mapping resource="Region.hbm.xml"/>
+        <mapping resource="Countries.hbm.xml"/>
+        <mapping resource="Departments.hbm.xml"/>
+        <mapping resource="EmpDetailsView.hbm.xml"/>
+        <mapping resource="Employees.hbm.xml"/>
+        <mapping resource="JobHistory.hbm.xml"/>
+        <mapping resource="Jobs.hbm.xml"/>
+        <mapping resource="Locations.hbm.xml"/>
+        <mapping resource="Regions.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

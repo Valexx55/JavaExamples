@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2015 11:33:30 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="val.examples.basic.hibernate.dao.dominio">
+    <class name="Countries" table="COUNTRIES">
+        <comment>country table. Contains 25 rows. References with locations table.</comment>
+        <id name="countryId" type="string">
+            <column name="COUNTRY_ID" length="2" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="regions" class="Regions" fetch="select">
+            <column name="REGION_ID" precision="22" scale="0">
+                <comment>Region ID for the country. Foreign key to region_id column in the departments table.</comment>
+            </column>
+        </many-to-one>
+        <property name="countryName" type="string">
+            <column name="COUNTRY_NAME" length="40">
+                <comment>Country name</comment>
+            </column>
+        </property>
+        <set name="locationses" table="LOCATIONS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COUNTRY_ID" length="2">
+                    <comment>Country where an office, warehouse, or production site of a company is located. Foreign key to country_id column of the countries table.</comment>
+                </column>
+            </key>
+            <one-to-many class="Locations" />
+        </set>
+    </class>
+</hibernate-mapping>
